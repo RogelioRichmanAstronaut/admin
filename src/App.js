@@ -13,11 +13,12 @@ import { Layout } from "./components/Layout";
 import { useSelector } from "react-redux";
 
 
-const App = () => {
+function App() {
   const user = useSelector((state) => state.user.currentUser?.user);
   const admin = user?.isAdmin;
   return (
     <BrowserRouter>
+    <a href="/login">Go to login page</a>
           <Routes>
             {admin && (
             <>
@@ -32,6 +33,7 @@ const App = () => {
               </Route>
             </>)}
               <Route path="/login" element={<Login />} />
+              <a href="/">Go to Home page</a>
           </Routes>
       </BrowserRouter>
   );
