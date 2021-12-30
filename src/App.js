@@ -14,11 +14,12 @@ import { useSelector } from "react-redux";
 
 
 function App() {
-  const user = useSelector((state) => state.user.currentUser?.user);
-  const admin = user?.isAdmin;
+  
+  const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
+  const currentUser = user && JSON.parse(user).currentUser;
+  const admin = currentUser?.isAdmin;
   return (
     <BrowserRouter>
-    <a href="/login">Go to login page</a>
           <Routes>
             {admin && (
             <>
@@ -33,7 +34,6 @@ function App() {
               </Route>
             </>)}
               <Route path="/login" element={<Login />} />
-              <a href="/">Go to Home page</a>
           </Routes>
       </BrowserRouter>
   );
